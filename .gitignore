@@ -77,6 +77,7 @@ local.properties
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/*
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -515,3 +516,15 @@ TSWLatexianTemp*
 *.glstex
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,intellij,java,latex
+
+Brotato/.classpath
+
+Brotato/.project
+
+Brotato/.idea/misc.xml
+
+Brotato/.idea/modules.xml
+
+Brotato/.idea/vcs.xml
+
+Brotato/Brotato.iml
