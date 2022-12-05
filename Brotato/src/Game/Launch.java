@@ -1,7 +1,5 @@
 package Game;
 
-import de.tud.gdi1.dropofwater.ui.GameplayState;
-import de.tud.gdi1.dropofwater.ui.MainMenuState;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -34,7 +32,7 @@ public class Launch extends StateBasedGame{
         }
 
         // Setze dieses StateBasedGame in einen App Container (oder Fenster)
-        AppGameContainer app = new AppGameContainer(new de.tud.gdi1.dropofwater.ui.Launch());
+        AppGameContainer app = new AppGameContainer(new Game.Launch());
 
         // Lege die Einstellungen des Fensters fest und starte das Fenster
         // (nicht aber im Vollbildmodus)
@@ -48,7 +46,8 @@ public class Launch extends StateBasedGame{
         // Fuege dem StateBasedGame die States hinzu
         // (der zuerst hinzugefuegte State wird als erster State gestartet)
         addState(new MainMenuState(MAINMENU_STATE));
-        addState(new GameplayState(INGAME_STATE));
+        addState(new CharacterSelectionState(CHARACTER_SELECTION_STATE));
+        addState(new InGameState(INGAME_STATE));
 
         // Fuege dem StateBasedEntityManager die States hinzu
         StateBasedEntityManager.getInstance().addState(MAINMENU_STATE);
