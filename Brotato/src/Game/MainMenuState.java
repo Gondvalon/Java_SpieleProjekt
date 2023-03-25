@@ -20,7 +20,6 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import de.tud.gdi1.dropofwater.ui.Launch;
 
 public class MainMenuState extends BasicGameState {
 
@@ -39,57 +38,59 @@ public class MainMenuState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
     	// Hintergrund laden
     	Entity background = new Entity("menu");	// Entitaet fuer Hintergrund
-    	background.setPosition(new Vector2f(0,0));	// Startposition des Hintergrunds
-    	background.addComponent(new RenderComponent("background") {
-			
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1, int arg2) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) {
-				
-				arg2.fillRect(0, 0, 1000, 1000);
-				
-			}
-			
-			@Override
-			public Vector2f getSize() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		}); // Bildkomponente
+    	background.setPosition(new Vector2f(600,500));	// Startposition des Hintergrunds
+    	background.setScale(1.8f);
+    	background.addComponent(new ImageRenderComponent(new Image("assets/bg.png"))); // Bildkomponente
     	    	
     	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
     	entityManager.addEntity(stateID, background);
     	
+    	
+    	
+    	
     	/* Neues Spiel starten-Entitaet */
-    	String new_Game = "Neues Spiel starten";
-    	Entity new_Game_Entity = new Entity(new_Game);
+    	Entity new_Game_Entity = new Entity("Start game");
     	
     	// Setze Position und Bildkomponente
     	new_Game_Entity.setPosition(new Vector2f(218, 190));
-    	new_Game_Entity.setScale(0.28f);
-    	new_Game_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+    	new_Game_Entity.setScale(1f);
+    	new_Game_Entity.addComponent(new ImageRenderComponent(new Image("assets/playBtn.png")));
     	
     	// Erstelle das Ausloese-Event und die zugehoerige Action
     	ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-    	Action new_Game_Action = new ChangeStateInitAction(Launch.GAMEPLAY_STATE);
+    	Action new_Game_Action = new ChangeStateInitAction(Launch.CHARACTER_SELECTION_STATE);
     	mainEvents.addAction(new_Game_Action);
     	new_Game_Entity.addComponent(mainEvents);
     	
     	// Fuege die Entity zum StateBasedEntityManager hinzu
     	entityManager.addEntity(this.stateID, new_Game_Entity);
     	
+    	
+    	
+    	/* Optionen-Entitaet */
+    	Entity options_Entity = new Entity("Options");
+    	
+    	// Setze Position und Bildkomponente
+    	options_Entity.setPosition(new Vector2f(218, 320));
+    	options_Entity.setScale(1f);
+    	options_Entity.addComponent(new ImageRenderComponent(new Image("assets/optionBtn.png")));
+    	
+    	// Erstelle das Ausloese-Event und die zugehoerige Action
+    	ANDEvent mainEvents_o = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+    	Action options_Action = new ChangeStateInitAction(Launch.OPTIONS_STATE);
+    	mainEvents_o.addAction(options_Action);
+    	options_Entity.addComponent(mainEvents_o);
+    	
+    	// Fuege die Entity zum StateBasedEntityManager hinzu
+    	entityManager.addEntity(this.stateID, options_Entity);
+    	
+    	
     	/* Beenden-Entitaet */
     	Entity quit_Entity = new Entity("Beenden");
     	
     	// Setze Position und Bildkomponente
-    	quit_Entity.setPosition(new Vector2f(218, 290));
-    	quit_Entity.setScale(0.28f);
-    	quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+    	quit_Entity.setPosition(new Vector2f(218, 450));
+    	quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/exitBtn.png")));
     	
     	// Erstelle das Ausloese-Event und die zugehoerige Action
     	ANDEvent mainEvents_q = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -110,11 +111,11 @@ public class MainMenuState extends BasicGameState {
         // StatedBasedEntityManager soll alle Entities rendern
         entityManager.renderEntities(container, game, g);
         
-		int counter = 0;
+		//int counter = 0;
 
-		g.drawString("Neues Spiel", 110, start_Position+counter*distance); counter++;
-		g.drawString("Optionen", 110, start_Position+counter*distance); counter++;
-		g.drawString("Beenden", 110, start_Position+counter*distance); counter++;
+		//g.drawString("Neues Spiel", 110, start_Position+counter*distance); counter++;
+		//g.drawString("Optionen", 110, start_Position+counter*distance); counter++;
+		//g.drawString("Beenden", 110, start_Position+counter*distance); counter++;
     }
 
     @Override

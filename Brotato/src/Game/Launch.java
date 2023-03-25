@@ -10,17 +10,29 @@ import eea.engine.entity.StateBasedEntityManager;
 public class Launch extends StateBasedGame{
 
     // Jeder State wird durch einen Integer-Wert gekennzeichnet
+	public enum State{
+		MAINMENU(0), CHARACTERSELECTION(1), INGAME(2), OPTIONS(3);
+		
+		public final int i;
+		private State(int i) {
+			this.i = i;
+		}
+	}
+	
+	public static State state = State.MAINMENU;
+	
+	
     public static final int MAINMENU_STATE = 0;
-
     public static final int CHARACTER_SELECTION_STATE = 1;
-
     public static final int INGAME_STATE = 2;
+	public static final int OPTIONS_STATE = 3;
 
     public Launch() {
         super("Brotato");
     }
 
-    public static void main(String[] args) throws SlickException {
+    public static void main(String[] args) throws SlickException {    	
+    	
         // Setze den library Pfad abhaengig vom Betriebssystem
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             System.setProperty("org.lwjgl.librarypath", System.getProperty("user.dir") + "/native/windows");
@@ -51,6 +63,7 @@ public class Launch extends StateBasedGame{
 
         // Fuege dem StateBasedEntityManager die States hinzu
         StateBasedEntityManager.getInstance().addState(MAINMENU_STATE);
+        StateBasedEntityManager.getInstance().addState(CHARACTER_SELECTION_STATE);
         StateBasedEntityManager.getInstance().addState(INGAME_STATE);
 
     }

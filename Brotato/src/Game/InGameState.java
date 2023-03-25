@@ -44,7 +44,40 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+    	Entity background = new Entity("bg");	// Entitaet fuer Hintergrund
+    	background.setPosition(new Vector2f(600,500));	// Startposition des Hintergrunds
+    	background.setScale(1.8f);
+    	background.addComponent(new ImageRenderComponent(new Image("assets/playgroundBg.png"))); 
+    	    	
+    	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
+    	entityManager.addEntity(stateID, background);
+    	
+    	Entity character = new Entity("Character");
+		character.setPosition(new Vector2f(container.getWidth() / 2, container.getHeight() / 2));
+		try {
+			character.addComponent(new ImageRenderComponent(new Image("assets/char.png")));
+		} catch (SlickException e) {
+			System.err.println("Cannot find file assets/char.png!");
+			e.printStackTrace();
+		}
 
+		KeyDownEvent keyUp = new KeyDownEvent(Input.KEY_W);
+		KeyDownEvent keyLeft = new KeyDownEvent(Input.KEY_A);
+		KeyDownEvent keyDown = new KeyDownEvent(Input.KEY_S);
+		KeyDownEvent keyRight = new KeyDownEvent(Input.KEY_D);
+		float speed = 1f;
+		keyUp.addAction(new MoveUpAction(speed));
+		keyLeft.addAction(new MoveLeftAction(speed));
+		keyDown.addAction(new MoveDownAction(speed));
+		keyRight.addAction(new MoveRightAction(speed));
+		character.addComponent(keyUp);
+		character.addComponent(keyLeft);
+		character.addComponent(keyDown);
+		character.addComponent(keyRight);
+
+		entityManager.addEntity(stateID, character);
+    	
+    	
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta)

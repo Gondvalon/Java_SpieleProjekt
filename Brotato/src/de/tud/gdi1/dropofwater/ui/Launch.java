@@ -18,6 +18,8 @@ public class Launch extends StateBasedGame {
 	// Jeder State wird durch einen Integer-Wert gekennzeichnet
 	public static final int MAINMENU_STATE = 0;
 	public static final int GAMEPLAY_STATE = 1;
+	public static final int CHARACTER_SELECTION_STATE = 2;
+	public static final int OPTIONS_STATE = 3;
 
 	public Launch() {
 		super("Drop of Water");
