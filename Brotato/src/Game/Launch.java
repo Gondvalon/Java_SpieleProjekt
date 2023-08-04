@@ -36,7 +36,7 @@ public class Launch extends StateBasedGame{
 
         // Lege die Einstellungen des Fensters fest und starte das Fenster
         // (nicht aber im Vollbildmodus)
-        app.setDisplayMode(1200, 1000, false);
+        app.setDisplayMode(1200, 900, false);
         app.start();
     }
 
@@ -51,6 +51,7 @@ public class Launch extends StateBasedGame{
 
         // Fuege dem StateBasedEntityManager die States hinzu
         StateBasedEntityManager.getInstance().addState(MAINMENU_STATE);
+        StateBasedEntityManager.getInstance().addState(CHARACTER_SELECTION_STATE);
         StateBasedEntityManager.getInstance().addState(INGAME_STATE);
 
     }

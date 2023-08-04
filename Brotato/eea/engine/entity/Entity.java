@@ -63,7 +63,7 @@ public class Entity {
   private boolean                         visible;
 
   /**
-   * the associated {@link eea.engine.component.render.RenderComponent} for
+   * the associated {@link eea.engine.component.RenderComponent} for
    * visualizing this entity (if it is visible)
    */
   private RenderComponent                 renderComponent;
